@@ -14,8 +14,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  ci:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -55,5 +54,9 @@ jobs:
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+      env:
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
 
 
