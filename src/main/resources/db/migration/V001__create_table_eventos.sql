@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS codechella;
+
 create table eventos
 (
     id        bigserial    not null,

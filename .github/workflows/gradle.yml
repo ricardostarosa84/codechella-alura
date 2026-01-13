@@ -32,7 +32,11 @@ jobs:
     - name: Preparar diretórios para volumes
       run: |
         mkdir -p pgroot init
+        # Opção rápida: dar permissão total (adequado para runner efêmero)
         chmod -R 777 pgroot init
+        # Opcional (mais correto): ownership para UID/GID do Postgres
+        sudo chown -R 999:999 pgroot
+    
 
     - name: Banco de dados
       run: docker compose up -d postgres

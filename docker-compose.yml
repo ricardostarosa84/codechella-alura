@@ -4,7 +4,7 @@ services:
     container_name: postgres_local
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: codechella
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
