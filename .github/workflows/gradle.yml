@@ -49,6 +49,10 @@ jobs:
         cache-disabled: true
 
 
+    - name: Dar permissão ao gradlew
+      run: chmod +x ./gradlew
+
+
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
