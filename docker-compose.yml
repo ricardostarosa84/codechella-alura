@@ -1,19 +1,23 @@
 services:
   postgres:
-    image: postgres
+    image: postgres:16
     container_name: postgres_local
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_DB: codechella
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: codechella
+      PGDATA: /var/lib/postgresql/data
     ports:
       - "5432:5432"
     volumes:
-      - ./pgroot:/var/lib/postgresql   # novo layout recomendado
-      - ./init:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data   # volume nomeado para dados
+      - ./init:/docker-entrypoint-initdb.d:ro  # scripts de inicialização
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d codechella"]
       interval: 5s
       timeout: 5s
       retries: 10
     restart: unless-stopped
+
+volumes:
+  pgdata:
